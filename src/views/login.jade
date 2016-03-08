@@ -1,0 +1,25 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/face.png", alt="face logo")
+    .navlink
+      a(href="/login") Login
+    .navlink
+      a(href="/signup") Sign up
+  section#login
+    form#loginForm(class="mainForm", name="loginForm", action="/login", method="POST")
+      label(for="username") Username: 
+      input#user(type="text", name="username", placeholder="username")
+      label(for="pass") Password: 
+      input#pass(type="password", name="pass", placeholder="password")
+      a#loginSubmit(class="formSubmit", href="#") Sign in
+  #domoMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage Wrong username or password
+    img#domo(src="assets/img/domo.png", alt="domo")
+block scripts
+    script(src="/assets/client.js")

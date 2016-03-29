@@ -15,6 +15,7 @@ block body
       input#user(type="text", name="username", placeholder="username")
       label(for="pass") Password: 
       input#pass(type="password", name="pass", placeholder="password")
+      input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#loginSubmit(class="formSubmit", href="#") Sign in
   #domoMessage
     img#speech(src="/assets/img/speech.png", alt="speech box")

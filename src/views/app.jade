@@ -13,6 +13,7 @@ block body
       input#domoName(type="text", name="name", placeholder="Domo Name")
       label(for="age") Age: 
       input#domoAge(type="text", name="age", placeholder="Domo Age")
+      input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#makeDomoSubmit(class="makeDomoSubmit", href="#") Make Domo
   section#domos
     if !domos || domos.length == 0

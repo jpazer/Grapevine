@@ -14,15 +14,18 @@ var makerPage = function (req, res) {
 };
 
 var makeDomo = function (req, res) {
-  if (!req.body.name || !req.body.age) {
-    return res.status(400).json({error: "RAWR! Both name and age are required!"});
+  if (!req.body.name || !req.body.age || !req.body.color) {
+    return res.status(400).json({error: "RAWR! Both name, age and color are required!"});
   }
 
   var domoData = {
     name: req.body.name,
     age: req.body.age,
+    color: req.body.color,
     owner: req.session.account._id
   };
+
+  console.log(req.body.color);
 
   var newDomo = new Domo.DomoModel(domoData);
 

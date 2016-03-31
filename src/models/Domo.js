@@ -21,6 +21,12 @@ var DomoSchema = new mongoose.Schema({
     required: true
   },
 
+  color: {
+    type: String,
+    required: true,
+    trim: true
+    },
+
   owner: {
     type: mongoose.Schema.ObjectId,
     required: true,
@@ -44,7 +50,7 @@ DomoSchema.statics.findByOwner = function (ownerId, callback) {
   var search = {
     owner: mongoose.Types.ObjectId(ownerId)
   };
-  return DomoModel.find(search).select("name age").exec(callback);
+  return DomoModel.find(search).select("name age color").exec(callback);
 };
 
 DomoModel = mongoose.model("Domo", DomoSchema);

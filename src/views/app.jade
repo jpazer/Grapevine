@@ -13,6 +13,8 @@ block body
       input#domoName(type="text", name="name", placeholder="Domo Name")
       label(for="age") Age: 
       input#domoAge(type="text", name="age", placeholder="Domo Age")
+      label(for="color") Color: 
+      input#domoColor(type="text", name="color", placeholder="Domo Color")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#makeDomoSubmit(class="makeDomoSubmit", href="#") Make Domo
   section#domos
@@ -23,8 +25,9 @@ block body
       each val in domos
         div.domo
           img(class="domoFace", src="assets/img/domoface.jpeg", alt="domo face")
-          h3.domoName name: #{val.name}
+          h3.domoName Name: #{val.name}
           h3.domoAge Age: #{val.age}
+          h3.domoColor Color: #{val.color}
   #domoMessage
     img#speech(src="/assets/img/speech.png", alt="speech box")
     h3

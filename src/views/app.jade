@@ -28,6 +28,8 @@ block body
           h3.domoName Name: #{val.name}
           h3.domoAge Age: #{val.age}
           h3.domoColor Color: #{val.color}
+          
+          button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
   #domoMessage
     img#speech(src="/assets/img/speech.png", alt="speech box")
     h3

@@ -5,10 +5,13 @@ block body
   nav
     a(href="/login")
       img#logo(src="/assets/img/face.png", alt="face logo")
+    label#title GrapeVine
     .navlink
       a(href="/login") Login
     .navlink
       a(href="/signup") Sign up
+    .navlink
+      a#title(href="/") Grapevine
   section#signup
     form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
       label(for="username") Username: 

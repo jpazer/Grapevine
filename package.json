@@ -1,7 +1,7 @@
 {
-  "name": "Logins",
+  "name": "Grapevine",
   "version": "1.0.0",
-  "description": "A Simple Login Example using Node.js, Mongo, Redis and PBKDF2",
+  "description": "An online multiplayer pictionary-telephone game.",
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
@@ -15,7 +15,7 @@
     "Login",
     "PBKDF2"
   ],
-  "author": "Cody Van De Mark",
+  "author": "Jasmine Pazer",
   "license": "Apache 2.0",
   "dependencies": {
     "body-parser": "^1.15.0",

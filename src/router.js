@@ -7,9 +7,10 @@ var router = function (app) {
   app.get("/signup", mid.requiresSecure, mid.requiresLogout, controllers.Account.signupPage);
   app.post("/signup", mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
   app.get("/logout", mid.requiresLogin, controllers.Account.logout);
-  app.get("/maker", mid.requiresLogin, controllers.Domo.makerPage);
-  app.post("/maker", mid.requiresLogin, controllers.Domo.make);
-  app.post("/delete", mid.requiresLogin, controllers.Domo.delete);
+  app.get("/main", mid.requiresLogin, controllers.Game.mainPage);
+  app.post("/makePage", mid.requiresLogin, controllers.Game.makePage);
+  app.post("/make", mid.requiresLogin, controllers.Game.make);
+  app.post("/delete", mid.requiresLogin, controllers.Game.delete);
   app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };
 

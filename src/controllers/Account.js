@@ -11,7 +11,7 @@ var signupPage = function (req, res) {
 };
 
 var logout = function (req, res) {
-  req.session.destroy(),
+  req.session.destroy();
   res.redirect('/');
 };
 
@@ -26,7 +26,7 @@ var login = function (req, res) {
 
     req.session.account = account.toAPI();
 
-    res.json({redirect: '/maker'});
+    res.json({redirect: '/main'});
   });
 };
 
@@ -54,7 +54,7 @@ var signup = function (req, res) {
           return res.status(400).json({error: "An error occurred"});
       }
       req.session.account = newAccount.toAPI();
-      res.json({redirect: '/maker'});
+      res.json({redirect: '/main'});
     });
 
   });

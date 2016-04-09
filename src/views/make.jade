@@ -1,0 +1,29 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/face.png", alt="face logo")
+    label#title GrapeVine
+    .navlink
+      a(href="/logout") Log out
+
+section#makeGame
+  form#GameForm(class="gameForm", name="gameForm", action="/make", method="POST")
+    label(for="name") Name: 
+    input#gameName(type="text", name="name", placeholder="Game Name")
+    label(for="GameMaxItr") Maximum Rounds: 
+    input#GameMaxItr(type="text", name="maxItr", placeholder="# of rounds in the game")
+    label(for="startWords") Starting Words: 
+    input#startWords(type="text", name="startWords", placeholder="Starting sentence")
+    input(type="hidden", name="_csrf", value="#{csrfToken}")
+    a#makeGameSubmit(class="makeGameSubmit", href="#") Make Game
+    
+  #domoMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#Domo(src="assets/img/domo.png", alt="domo")
+block scripts
+  script(src="/assets/make.js")

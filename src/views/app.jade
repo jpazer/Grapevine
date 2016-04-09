@@ -8,34 +8,27 @@ block body
     label#title GrapeVine
     .navlink
       a(href="/logout") Log out
-      
-  section#makeDomo
-    form#domoForm(class="domoForm", name="domoForm", action="/maker", method="POST")
-      label(for="name") Name: 
-      input#domoName(type="text", name="name", placeholder="Domo Name")
-      label(for="age") Age: 
-      input#domoAge(type="text", name="age", placeholder="Domo Age")
-      label(for="color") Color: 
-      input#domoColor(type="text", name="color", placeholder="Domo Color")
-      input(type="hidden", name="_csrf", value="#{csrfToken}")
-      a#makeDomoSubmit(class="makeDomoSubmit", href="#") Make Domo
-  section#domos
-    if !domos || domos.length == 0
-      div.domo
-        h3.emptyDomo No Domos yet
+    
+  button(class="makeButton", name="makeButton" value="#{csrfToken}") Make a new game
+  
+  section#games
+    if !games || games.length == 0
+      div.game
+        h3.emptyGame No Games yet
     else
-      each val in domos
-        div.domo
-          img(class="domoFace", src="assets/img/domoface.jpeg", alt="domo face")
-          h3.domoName Name: #{val.name}
-          h3.domoAge Age: #{val.age}
-          h3.domoColor Color: #{val.color}
+      each val in games
+        div.game
+          h3.gameName Name: #{val.name}
+          h3.gameCurItr Current Iteration: #{val.curItr}
+          h3.gameOwner Owner: #{val.Owner}
+          h3.curCard Current Card: #{val.card[val.curItr]}
           
           button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
+          
   #domoMessage
     img#speech(src="/assets/img/speech.png", alt="speech box")
     h3
       span#errorMessage
     img#domo(src="assets/img/domo.png", alt="domo")
 block scripts
-        script(src="/assets/maker.js")
+        script(src="/assets/make.js")

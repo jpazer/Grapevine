@@ -3,8 +3,6 @@ block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block body
   nav
-    a(href="/login")
-      img#logo(src="/assets/img/face.png", alt="face logo")
     label#title GrapeVine
     .navlink
       a(href="/logout") Log out
@@ -29,4 +27,6 @@ block body
           p.gameCard Card: #{val.cards[val.currentIteration]}
           
           button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
-          
+  
+block scripts
+  script(src="/assets/make.js")

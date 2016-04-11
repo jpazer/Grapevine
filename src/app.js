@@ -49,7 +49,7 @@ app.use(session({
     port: redisURL.port,
     pass: redisPASS
   }),
-  secret: 'Heard it through the GrapeVine',
+  secret: 'Domo Arigato',
   resave: true,
   saveUninitialized: true,
   cookie:{

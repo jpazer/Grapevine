@@ -3,8 +3,6 @@ block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block body
   nav
-    a(href="/login")
-      img#logo(src="/assets/img/face.png", alt="face logo")
     label#title GrapeVine
     .navlink
       a(href="/logout") Log out
@@ -24,3 +22,5 @@ block body
       input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#makeGameSubmit(class="makeGameSubmit", href="#") Make Game
     
+block scripts
+  script(src="/assets/make.js")

@@ -3,8 +3,6 @@ block append style
     link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block body
   nav
-    a(href="/login")
-      img#logo(src="/assets/img/face.png", alt="face logo")
     label#title GrapeVine
     .navlink
       a(href="/login") Login
@@ -21,10 +19,6 @@ block body
       input#pass2(type="password", name="pass2", placeholder="retype password")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#signupSubmit(class="formSubmit", href="#") Sign up
-  #domoMessage
-    img#speech(src="/assets/img/speech.png", alt="speech box")
-    h3
-      span#errorMessage
-    img#domo(src="assets/img/domo.png", alt="domo")
+
 block scripts
-        script(src="/assets/client.js")
+  script(src="/assets/client.js")

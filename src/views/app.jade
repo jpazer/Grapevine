@@ -8,8 +8,12 @@ block body
     label#title GrapeVine
     .navlink
       a(href="/logout") Log out
+    .navlink
+      a(href="/account") Account
+    .navlink
+      a(href="/main") Home
     
-  button(class="makeButton", name="makeButton" value="#{csrfToken}") Make a new game
+  a(href="/make") Make a new game
   
   section#games
     if !games || games.length == 0
@@ -18,17 +22,11 @@ block body
     else
       each val in games
         div.game
-          h3.gameName Name: #{val.name}
-          h3.gameCurItr Current Iteration: #{val.curItr}
-          h3.gameOwner Owner: #{val.Owner}
-          h3.curCard Current Card: #{val.card[val.curItr]}
+          p.gameName Name: #{val.name}
+          p.gameCurItr Current Iteration: #{val.currentIteration}
+          p.gameMaxItr Maximum Iterations: #{val.maxIterations}
+          p.gameOwner Owner: #{val.ownerUsername}
+          p.gameCard Card: #{val.cards[val.currentIteration]}
           
           button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
           
-  #domoMessage
-    img#speech(src="/assets/img/speech.png", alt="speech box")
-    h3
-      span#errorMessage
-    img#domo(src="assets/img/domo.png", alt="domo")
-block scripts
-        script(src="/assets/make.js")

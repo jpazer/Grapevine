@@ -5,7 +5,7 @@
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
-    "pretest": "jshint ./client",
+    "pretest": "jshint ./src",
     "test": "echo \"Tests Complete\""
   },
   "keywords": [

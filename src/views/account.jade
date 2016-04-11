@@ -1,0 +1,20 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/face.png", alt="face logo")
+    label#title GrapeVine
+    .navlink
+      a(href="/logout") Log out
+    .navlink
+      a(href="/account") Account
+    .navlink
+      a(href="/main") Home
+  
+  div.account
+    p.accountName Name: #{account.username}
+    p.accountID ID #: #{account._id}
+          
+          

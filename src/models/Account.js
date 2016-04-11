@@ -60,6 +60,14 @@ AccountSchema.statics.findByUsername = function(name, callback) {
     return AccountModel.findOne(search, callback);
 };
 
+AccountSchema.statics.findByOwner = function (ownerId, callback) {
+  var search = {
+    owner: mongoose.Types.ObjectId(ownerId)
+  };
+  return AccountModel.find(search).select().exec(callback);
+};
+
+
 AccountSchema.statics.generateHash = function(password, callback) {
 	var salt = crypto.randomBytes(saltLength);
 

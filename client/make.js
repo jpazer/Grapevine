@@ -24,28 +24,21 @@ $(document).ready(function() {
         });
     }
 
-    // $("#makeDomoSubmit").on("click", function(e) {
-    //     e.preventDefault();
-    //
-    //     $("#domoMessage").animate({width:'hide'},350);
-    //
-    //     if($("#domoName").val() == '' || $("#domoAge").val() == '') {
-    //         handleError("RAWR! All fields are required");
-    //         return false;
-    //     }
-    //     console.log($("#domoForm").serialize());
-    //     sendAjax($("#domoForm").attr("action"), $("#domoForm").serialize());
-    //
-    //     return false;
-    // });
-    //
-    // $(".deleteButton").on("click", function (e) {
-    //   e.preventDefault();
-    //   sendAjax("/delete", {'name': $(this).attr('name'), '_csrf': $(this).val()});
-    // });
+    $("#makeGameSubmit").on("click", function(e) {
+        e.preventDefault();
 
-    $(".makeButton").on("click", function (e) {
+        if($("#gameName").val() == '' || $("#gameMaxItr").val() == '' || $("#gameStartWords").val() == '') {
+            handleError("RAWR! All fields are required");
+            return false;
+        }
+        console.dir($("#gameForm"));
+        sendAjax($("#gameForm").attr("action"), $("#gameForm").serialize());
+
+        return false;
+    });
+
+    $(".deleteButton").on("click", function (e) {
       e.preventDefault();
-      sendAjax("/makePage", {'_csrf': $(this).val()});
+      sendAjax("/delete", {'name': $(this).attr('name'), '_csrf': $(this).val()});
     });
 });

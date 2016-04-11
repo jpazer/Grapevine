@@ -10,7 +10,7 @@ var RedisStore = require('connect-redis')(session);
 var url = require('url');
 var csrf = require('csurf');
 
-var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/DomoMaker";
+var dbURL = process.env.MONGOLAB_URI || "mongodb://localhost/GrapeVine";
 
 var db = mongoose.connect(dbURL, function (err) {
   if (err) {
@@ -49,7 +49,7 @@ app.use(session({
     port: redisURL.port,
     pass: redisPASS
   }),
-  secret: 'Domo Arigato',
+  secret: 'Heard it through the GrapeVine',
   resave: true,
   saveUninitialized: true,
   cookie:{

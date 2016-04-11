@@ -17,7 +17,10 @@ var GameSchema = new mongoose.Schema({
 
   cards: [mongoose.Schema.Types.Mixed],
 
-  currentIteration: Number,
+  currentIteration: {
+    type: Number,
+    default: 0
+  },
 
   maxIterations: {
     type: Number,
@@ -35,6 +38,11 @@ var GameSchema = new mongoose.Schema({
     ref: 'Account'
   },
 
+  ownerUsername: {
+    type: String,
+    required: true
+  },
+
   createdData: {
     type: Date,
     default: Date.now
@@ -43,10 +51,11 @@ var GameSchema = new mongoose.Schema({
 
 GameSchema.methods.toAPI = function () {
   return {
-    cards: this.cards,
-    curentIteration: this.currentIteration,
-    maxIterations: this.maxIterations,
+    card: this.cards[this.currentIteration],
+    curItr: this.currentIteration,
+    maxItr: this.maxIterations,
     owner: this.owner,
+    ownerUsername: this.ownerUsername,
     createdData: this.createdData
   };
 };

@@ -14,6 +14,7 @@ var mainPage = function(req, res) {
     docs.sort(function(a, b) {
       return parseFloat(a.createdData) - parseFloat(b.createdData);
     });
+    console.log(docs);
     res.render('app', {
       csrfToken: req.csrfToken(),
       games: docs
@@ -26,6 +27,7 @@ var makePage = function(req, res) {
 };
 
 var makeGame = function(req, res) {
+  console.log("in make game");
   if (!req.body.name || !req.body.maxItr || !req.body.startWords) {
     return res.status(400).json({
       error: "RAWR! Both name, max iterations and start words are required!"
@@ -36,7 +38,8 @@ var makeGame = function(req, res) {
     name: req.body.name,
     maxIterations: req.body.maxItr,
     cards: [req.body.startWords],
-    owner: req.session.account._id
+    owner: req.session.account._id,
+    ownerUsername: req.session.account.username
   };
 
   var newGame = new Game.GameModel(gameData);
@@ -59,7 +62,6 @@ var deleteGame = function(req, res) {
       }
     });
    res.json({redirect: '/main'});
-
 };
 
 module.exports.mainPage = mainPage;

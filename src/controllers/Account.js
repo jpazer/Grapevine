@@ -30,6 +30,10 @@ var login = function (req, res) {
   });
 };
 
+var viewAccount = function (req, res) {
+    res.render('account', {account: req.session.account, csrfToken: req.csrfToken()});
+};
+
 var signup = function (req, res) {
   if (!req.body.username || !req.body.pass || !req.body.pass2) {
     return res.status(400).json({error: "RAWR! All fields required!"});
@@ -39,11 +43,12 @@ var signup = function (req, res) {
     return res.status(400).json({error: "RAWR! Passwords do not match!"});
   }
 
+
   Account.AccountModel.generateHash(req.body.pass, function (salt, hash) {
     var accountData = {
       username: req.body.username,
       salt: salt,
-      password: hash
+      password: hash,
     };
 
     var newAccount = new Account.AccountModel(accountData);
@@ -65,3 +70,4 @@ module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signupPage = signupPage;
 module.exports.signup = signup;
+module.exports.viewAccount = viewAccount;

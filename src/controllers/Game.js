@@ -57,7 +57,7 @@ var makeGame = function(req, res) {
 
 var requestGame = function (req, res) {
   console.log("request game page");
-  res.json({redirect:'/game&name='+req.body.name});
+  res.json({redirect:'/game'});
 };
 
 var showGame = function (req, res) {

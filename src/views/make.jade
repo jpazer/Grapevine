@@ -12,15 +12,15 @@ block body
       a(href="/main") Home
 
   section#makeGame
-    form#gameForm(class="gameForm", name="gameForm", action="/make", method="POST")
+    form#gameForm(class="mainForm", name="gameForm", action="/make", method="POST")
       label(for="name") Name: 
       input#gameName(type="text", name="name", placeholder="Game Name")
-      label(for="gameMaxItr") Maximum Rounds: 
-      input#gameMaxItr(type="text", name="maxItr", placeholder="# of rounds in the game")
-      label(for="gameStartWords") Starting Words: 
+      label(for="gameMaxItr") Max Rounds: 
+      input#gameMaxItr(type="text", name="maxItr", placeholder="# of rounds")
+      label(for="gameStartWords") First Card: 
       input#gameStartWords(type="text", name="startWords", placeholder="Starting sentence")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
-      a#makeGameSubmit(class="makeGameSubmit", href="#") Make Game
+      a#makeGameSubmit(class="formSubmit", href="#") Make Game
     
 block scripts
   script(src="/assets/make.js")

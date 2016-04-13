@@ -74,6 +74,14 @@ GameSchema.statics.deleteByName = function (name, callback) {
    GameModel.find(search).remove().exec(callback);
 };
 
+GameSchema.statics.findByName = function (name, ownerId, callback) {
+  var search = {
+    owner: mongoose.Types.ObjectId(ownerId),
+    name: name
+  };
+  return GameModel.find(search).select().exec(callback);
+};
+
 GameModel = mongoose.model("Game", GameSchema);
 
 module.exports.GameModel = GameModel;

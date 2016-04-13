@@ -10,24 +10,20 @@ block body
       a(href="/account") Account
     .navlink
       a(href="/main") Home
-    
-  
   
   section#games
-    a#newGameButton(href="/make" class="formSubmit") Make a new game
-    if !games || games.length == 0
+    if !game || game.length == 0
       div.game
-        h3.emptyGame No Games yet
+        h3.emptyGame No Game exists
     else
-      each val in games
-        div.game(name="#{val.name}", csrf="#{csrfToken}")
+      each val in game
+        div.game
           p.gameName Name: #{val.name}
           p.gameCurItr Current Iteration: #{val.currentIteration}
           p.gameMaxItr Maximum Iterations: #{val.maxIterations}
           p.gameOwner Owner: #{val.ownerUsername}
-          p.gameCard Card: #{val.cards[val.currentIteration]}
-          
-          button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
+          p.gameCard Card: #{val.cards[game.currentIteration]}
+    a(href="/main", class="formSubmit") Return
   
 block scripts
   script(src="/assets/make.js")

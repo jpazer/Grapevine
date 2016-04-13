@@ -55,6 +55,22 @@ var makeGame = function(req, res) {
   });
 };
 
+var requestGame = function (req, res) {
+  console.log("request game page");
+  res.json({redirect:'/game&name='+req.body.name});
+};
+
+var showGame = function (req, res) {
+  console.log("show game page" + req.body.name);
+  Game.GameModel.findByName(req.name, req.session.account._id, function (err, docs) {
+    console.log("findByName in show game page");
+    if (err){
+      console.log(err);
+    }
+    res.render('game', {game:docs, csrfToken: req.csrfToken()});
+  });
+};
+
 var deleteGame = function(req, res) {
     Game.GameModel.deleteByName(req.body.name, function (err, docs) {
       if (err){
@@ -67,4 +83,6 @@ var deleteGame = function(req, res) {
 module.exports.mainPage = mainPage;
 module.exports.makePage = makePage;
 module.exports.make = makeGame;
+module.exports.showGame = showGame;
+module.exports.requestGame = requestGame;
 module.exports.delete = deleteGame;

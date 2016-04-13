@@ -11,6 +11,8 @@ var router = function (app) {
   app.get("/main", mid.requiresLogin, controllers.Game.mainPage);
   app.get("/make", mid.requiresLogin, controllers.Game.makePage);
   app.post("/make", mid.requiresLogin, controllers.Game.make);
+  app.post("/game", mid.requiresLogin, controllers.Game.requestGame);
+  app.get("/game", mid.requiresLogin, controllers.Game.showGame);
   app.post("/delete", mid.requiresLogin, controllers.Game.delete);
   app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
 };

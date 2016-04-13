@@ -7,6 +7,8 @@ $(document).ready(function() {
     }
 
     function sendAjax(action, data) {
+      console.log("sending ajax " + action);
+      console.dir(data);
         $.ajax({
             cache: false,
             type: "POST",
@@ -40,5 +42,12 @@ $(document).ready(function() {
     $(".deleteButton").on("click", function (e) {
       e.preventDefault();
       sendAjax("/delete", {'name': $(this).attr('name'), '_csrf': $(this).val()});
+    });
+
+    $(".game").on("click", function (e) {
+      e.preventDefault();
+      console.log($(this).attr('name') + " game clicked");
+      console.log($(this).attr('csrf'));
+      sendAjax("/game", {'name': $(this).attr('name'), '_csrf': $(this).attr('csrf')});
     });
 });

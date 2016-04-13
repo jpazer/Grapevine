@@ -6,23 +6,10 @@ html, body {
     overflow-x: hidden;
 }
 
-#logo {
-    height: 40px;
-    width: 40px;
-    padding-top: 5px;
-    padding-left: 5px;
-    float:left;
-    border-radius: 8px;
-}
-
 nav {
     width: 100%;
     height: 50px;
-    background-color: #6156AB;
-}
-
-nav:nth-child(1) {
-    padding-right: 25px;
+    background-color: gray;
 }
 
 .navlink {
@@ -37,40 +24,48 @@ nav:nth-child(1) {
   padding-top: 12px;
   padding-left: 20px;
   color: white;
-  font-size: 1.3em;
+  font-size: 1.7em;
   float: left;
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
     color: white;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 1px;
     padding: 5px;
-    background-color: #6156AB;
+    background-color: gray;
     transition: background-color 0.4s ease;
 }
 
 .navlink a:hover {
     transition: background-color 0.8s ease;
-    background-color: #66bdff;
+    background-color: darkgray;
+}
+
+#newGameButton {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 145px;
+  text-align: center;
+
 }
 
 .gameForm {
-    border: 2px solid #338acc;
-    height: 35px;
-    width: 780px;
-    margin-top:0px;
-    margin-left: auto;
-    margin-right: auto;
+    border: 2px solid black;
+    height: auto;
+    width: 500px;
+    margin-top:15px;
+    margin-left: 60px;
     padding-top:10px;
-    background-color: #6156AB;
-    border-radius: 4px;
+    background-color: gray;
+    border-radius: 1px;
 
 }
 
 .gameForm label {
     display: inline-block;
-    width: 60px;
+    width: 100px;
     margin-left: 10px;
     font-size: 1.2em;
     float: left;
@@ -81,28 +76,30 @@ nav:nth-child(1) {
     float:left;
 }
 
-.makeGameSubmit {
+.formSubmit {
     transition: background-color 0.4s ease;
-    display: inline;
     margin-top: 14px;
+    margin-bottom: 14px;
     font-size: 1.2em;
-    width: 90px;
-    background-color: #6156AB;
-    border-radius: 2px;
-    padding: 3px 0px;
+    background-color: gray;
+    border-radius: 1px;
     color: black;
     text-decoration: none;
-    margin-left: 45px;
     padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 115px;
+    text-align: center;
 }
 
-.makeGameSubmit:link, .makeGameSubmit:visited, .makeGameSubmit:hover, .makeGameSubmit:active {
+.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
     color: white;
 }
 
-.makeGameSubmit:hover {
+.formSubmit:hover {
     transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: darkgray;
 }
 
 .mainForm {
@@ -119,161 +116,56 @@ nav:nth-child(1) {
 
 .mainForm label {
     display: inline-block;
-    width: 100px;
+    width: 130px;
     margin-right: 10px;
     text-align: right;
     font-size: 1.2em;
 }
 
-.formSubmit {
-    transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 90px;
-    background-color: #6156AB;
-    border-radius: 2px;
-    padding: 3px 0px;
-    color: black;
-    text-decoration: none;
-}
-
-.formSubmit:link, .formSubmit:visited, .formSubmit:hover, .formSubmit:active {
-    color: white;
-}
-
-.formSubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
-}
-
-#user, #pass, #pass2 {
+#user, #pass, #pass2, #gameName, #gameMaxItr, #gameStartWords {
     text-align: center;
     font-size: 1.1em;
     width: 180px;
-    border-radius: 6px;
+    border-radius: 1px;
 }
 
 #user:focus, #pass:focus, #pass2:focus {
     outline: none;
-    box-shadow: 0px 0px 1px 1px #6156AB;
-}
-
-#gameMessage {
-    display:none;
-    top: 250px;
-    width: 250px;
-    height: 650px;
-    position: absolute;
-    z-index: 200;
-    right: 0px;
-    overflow: hidden;
-}
-
-#gameMessage h3 {
-    width: 200px;
-    position: absolute;
-    top: 0px;
-    left: 20px;
-}
-
-#speech {
-    height: 120px;
-    width: 250px;
-    z-index:300;
-}
-
-#errorMessage {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: red;
-    font-style: italic;
-}
-
-#game {
-    z-index: 225;
-    margin-top: -20px;
-    margin-left: 135px;
-    height: 450px;
-    width: 300px;
-    -ms-transform: rotate(330deg);
-    -webkit-transform: rotate(330deg);
-    transform: rotate(330deg);
+    box-shadow: 0px 0px 1px 1px darkgray;
 }
 
 #games {
     width: 40%;
     min-width: 400px;
-    border: 2px solid #6156AB;
+    border: 2px solid black;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
 }
 
-.game {
-    width: 95%;
+.game, .account {
+    width: 90%;
     margin: 0 auto;
     margin-top: 2px;
     margin-bottom: 2px;
-    border: 2px solid #6156AB;
+    border: 2px solid black;
     border-radius: 4px;
-    background-color: #6156AB;
+    background-color: gray;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
+}
+
+.account{
+  width: 40%;
+  margin-top: 3%;
 }
 
 .game:hover {
     transition: border-color 0.2s ease-out;
     border-color: rgba(255,255,255, 0.8);
     transition: background-color 2.6s ease-out;
-    background-color: #66bfff;
-}
-
-img.gameFace {
-    margin-left: 25px;
-    margin-right: 10px;
-    height: 50px;
-    width: 50px;
-    border-radius: 4px;
-    margin-top:10px;
-    float:left;
-}
-
-h3.emptyGame {
-    width: 400px;
-    font-size: 1.5em;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 18px;
-}
-
-h3.gameName {
-    float:left;
-    width: 200px;
-    font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
-}
-
-h3.gameAge {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-h3.gameColor {
-    float:right;
-    text-align: left;
-    width: 200px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
+    background-color: darkgray;
 }
 
 .game:first-child {

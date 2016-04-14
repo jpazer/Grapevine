@@ -11,6 +11,7 @@ block body
     
   section#login
     form#loginForm(class="mainForm", name="loginForm", action="/login", method="POST")
+      p.error Error Here
       label(for="username") Username: 
       input#user(type="text", name="username", placeholder="username")
       label(for="pass") Password: 

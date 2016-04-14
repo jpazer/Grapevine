@@ -8,9 +8,12 @@ block body
       a(href="/login") Login
     .navlink
       a(href="/signup") Sign up
+      
+  
 
   section#signup
     form#signupForm(class="mainForm", name="signupForm", action="/signup", method="POST")
+      p.error Error Here
       label(for="username") Username: 
       input#user(type="text", name="username", placeholder="username")
       label(for="pass") Password: 

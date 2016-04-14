@@ -11,8 +11,12 @@ block body
     .navlink
       a(href="/main") Home
 
+  
+
+
   section#makeGame
     form#gameForm(class="mainForm", name="gameForm", action="/make", method="POST")
+      p.error Error Here
       label(for="name") Name: 
       input#gameName(type="text", name="name", placeholder="Game Name")
       label(for="gameMaxItr") Max Rounds: 

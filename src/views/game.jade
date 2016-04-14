@@ -10,8 +10,11 @@ block body
       a(href="/account") Account
     .navlink
       a(href="/main") Home
+      
+  
   
   section#games
+    p.error Error Here
     if !game || game.length == 0
       div.game
         h3.emptyGame No Game exists
@@ -22,7 +25,7 @@ block body
           p.gameCurItr Current Iteration: #{val.currentIteration}
           p.gameMaxItr Maximum Iterations: #{val.maxIterations}
           p.gameOwner Owner: #{val.ownerUsername}
-          p.gameCard Card: #{val.cards[game.currentIteration]}
+          p.gameCard Card: #{val.cards[val.currentIteration]}
     a(href="/main", class="formSubmit") Return
   
 block scripts

@@ -30,7 +30,7 @@ var makeGame = function(req, res) {
   console.log("in make game");
   if (!req.body.name || !req.body.maxItr || !req.body.startWords) {
     return res.status(400).json({
-      error: "RAWR! Both name, max iterations and start words are required!"
+      error: "Both name, max iterations and start words are required."
     });
   }
 
@@ -55,15 +55,8 @@ var makeGame = function(req, res) {
   });
 };
 
-var requestGame = function (req, res) {
-  console.log("request game page");
-  res.json({redirect:'/game'});
-};
-
 var showGame = function (req, res) {
-  console.log("show game page" + req.body.name);
-  Game.GameModel.findByName(req.name, req.session.account._id, function (err, docs) {
-    console.log("findByName in show game page");
+  Game.GameModel.findByName(req.params.name, req.session.account._id, function (err, docs) {
     if (err){
       console.log(err);
     }
@@ -84,5 +77,4 @@ module.exports.mainPage = mainPage;
 module.exports.makePage = makePage;
 module.exports.make = makeGame;
 module.exports.showGame = showGame;
-module.exports.requestGame = requestGame;
 module.exports.delete = deleteGame;

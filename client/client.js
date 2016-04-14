@@ -3,7 +3,8 @@
 $(document).ready(function() {
 
     function handleError(message) {
-      console.log(message);
+      $(".error").show();
+      $(".error").text(message);
     }
 
     function sendAjax(action, data) {
@@ -14,6 +15,7 @@ $(document).ready(function() {
             data: data,
             dataType: "json",
             success: function(result, status, xhr) {
+                $(".error").hide();
                 window.location = result.redirect;
             },
             error: function(xhr, status, error) {
@@ -25,32 +27,25 @@ $(document).ready(function() {
 
     $("#signupSubmit").on("click", function(e) {
         e.preventDefault();
-
         if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
-            handleError("RAWR! All fields are required");
+            handleError("All fields are required");
             return false;
         }
-
         if($("#pass").val() !== $("#pass2").val()) {
-            handleError("RAWR! Passwords do not match");
+            handleError("Passwords do not match");
             return false;
         }
-
         sendAjax($("#signupForm").attr("action"), $("#signupForm").serialize());
-
         return false;
     });
 
     $("#loginSubmit").on("click", function(e) {
         e.preventDefault();
-
         if($("#user").val() == '' || $("#pass").val() == '') {
-            handleError("RAWR! Username or password is empty");
+            handleError("Username or password is empty");
             return false;
         }
-
         sendAjax($("#loginForm").attr("action"), $("#loginForm").serialize());
-
         return false;
     });
 });

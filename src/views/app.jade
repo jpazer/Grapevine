@@ -10,10 +10,12 @@ block body
       a(href="/account") Account
     .navlink
       a(href="/main") Home
-    
+          
   
-  
+
+  p.instruct Click on a Game to Open
   section#games
+    p.error Error Here
     a#newGameButton(href="/make" class="formSubmit") Make a new game
     if !games || games.length == 0
       div.game

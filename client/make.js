@@ -3,7 +3,8 @@
 $(document).ready(function() {
 
     function handleError(message) {
-        console.log(message);
+        $(".error").show();
+        $(".error").text(message);
     }
 
     function sendAjax(action, data) {
@@ -16,7 +17,7 @@ $(document).ready(function() {
             data: data,
             dataType: "json",
             success: function(result, status, xhr) {
-                console.log("posteed");
+                $(".error").hide();
                 window.location = result.redirect;
             },
             error: function(xhr, status, error) {
@@ -28,14 +29,11 @@ $(document).ready(function() {
 
     $("#makeGameSubmit").on("click", function(e) {
         e.preventDefault();
-
         if($("#gameName").val() == '' || $("#gameMaxItr").val() == '' || $("#gameStartWords").val() == '') {
-            handleError("RAWR! All fields are required");
+            handleError("All fields are required");
             return false;
         }
-        console.dir($("#gameForm"));
         sendAjax($("#gameForm").attr("action"), $("#gameForm").serialize());
-
         return false;
     });
 
@@ -46,8 +44,6 @@ $(document).ready(function() {
 
     $(".game").on("click", function (e) {
       e.preventDefault();
-      console.log($(this).attr('name') + " game clicked");
-      console.log($(this).attr('csrf'));
-      sendAjax("/game", {'name': $(this).attr('name'), '_csrf': $(this).attr('csrf')});
+      window.location = "/game/"+$(this).attr('name');
     });
 });

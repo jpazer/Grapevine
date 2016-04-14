@@ -2,6 +2,7 @@ var _ = require('underscore');
 var models = require('../models');
 
 var Game = models.Game;
+var errmsg = "";
 
 var mainPage = function(req, res) {
   Game.GameModel.findByOwner(req.session.account._id, function(err, docs) {
@@ -14,7 +15,6 @@ var mainPage = function(req, res) {
     docs.sort(function(a, b) {
       return parseFloat(a.createdData) - parseFloat(b.createdData);
     });
-    console.log(docs);
     res.render('app', {
       csrfToken: req.csrfToken(),
       games: docs
@@ -47,8 +47,15 @@ var makeGame = function(req, res) {
   newGame.save(function(err) {
     if (err) {
       console.log(err);
+      if (err.code == 11000){
+        errmsg = "Error: The name ''"+req.body.name + "'' is already in use.";
+      }else if(err.name == 'ValidationError'){
+        errmsg = "Error: Max Rounds must be a number between 1-100.";
+      }else{
+        errmsg =  "An error occurred";
+      }
       return res.status(400).json({
-        error: "An error occurred"
+        error: errmsg
       });
     }
     res.json({  redirect: '/main'  });

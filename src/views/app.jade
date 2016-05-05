@@ -30,6 +30,6 @@ block body
           p.gameCard Card: #{val.cards[val.currentIteration]}
           
           button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
-  
+    div(style="clear:both; margin-bottom:10px;")
 block scripts
   script(src="/assets/make.js")

@@ -5,7 +5,7 @@ var Game = models.Game;
 var errmsg = "";
 
 var mainPage = function(req, res) {
-  Game.GameModel.findByOwner(req.session.account._id, function(err, docs) {
+  Game.GameModel.returnAll(function(err, docs) {
     if (err) {
       console.log(err);
       return res.status(400).json({
@@ -37,6 +37,7 @@ var makeGame = function(req, res) {
   var gameData = {
     name: req.body.name,
     maxIterations: req.body.maxItr,
+    cardType: "string",
     cards: [req.body.startWords],
     owner: req.session.account._id,
     ownerUsername: req.session.account.username
@@ -63,7 +64,7 @@ var makeGame = function(req, res) {
 };
 
 var showGame = function (req, res) {
-  Game.GameModel.findByName(req.params.name, req.session.account._id, function (err, docs) {
+  Game.GameModel.findByName(req.params.name, function (err, docs) {
     if (err){
       console.log(err);
     }

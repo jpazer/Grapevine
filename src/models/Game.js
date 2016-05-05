@@ -16,6 +16,10 @@ var GameSchema = new mongoose.Schema({
     set: setName
   },
 
+  cardType: {
+    type:String,
+  },
+
   cards: [mongoose.Schema.Types.Mixed],
 
   currentIteration: {
@@ -52,6 +56,7 @@ var GameSchema = new mongoose.Schema({
 
 GameSchema.methods.toAPI = function () {
   return {
+    cardType: this.cardType,
     card: this.cards[this.currentIteration],
     curItr: this.currentIteration,
     maxItr: this.maxIterations,
@@ -75,13 +80,17 @@ GameSchema.statics.deleteByName = function (name, callback) {
    GameModel.find(search).remove().exec(callback);
 };
 
-GameSchema.statics.findByName = function (name, ownerId, callback) {
+GameSchema.statics.findByName = function (name, callback) {
   var search = {
-    owner: mongoose.Types.ObjectId(ownerId),
     name: name
   };
   return GameModel.find(search).select().exec(callback);
 };
+
+GameSchema.statics.returnAll = function (callback) {
+  var search = {};
+  return GameModel.find(search).select().exec(callback);
+}
 
 GameModel = mongoose.model("Game", GameSchema);
 

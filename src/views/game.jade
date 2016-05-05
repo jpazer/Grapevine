@@ -20,12 +20,12 @@ block body
         h3.emptyGame No Game exists
     else
       each val in game
-        div.game
+        div.showGame
           p.gameName Name: #{val.name}
-          p.gameCurItr Current Iteration: #{val.currentIteration}
-          p.gameMaxItr Maximum Iterations: #{val.maxIterations}
-          p.gameOwner Owner: #{val.ownerUsername}
           p.gameCard Card: #{val.cards[val.currentIteration]}
+          canvas#canvas(height='500', width='500') Please use an HTML 5 browser
+          button(class="addCardButton", name="#{val.name}", value="#{csrfToken}") Submit
+        
     a(href="/main", class="formSubmit") Return
   
 block scripts

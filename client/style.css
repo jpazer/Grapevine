@@ -133,25 +133,31 @@ nav {
 }
 
 #games {
-    width: 40%;
+    width: 80%;
     min-width: 400px;
     border: 2px solid black;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
+
 }
 
-.game, .account{
-    width: 90%;
+.game, .account, .showGame{
+    width: 45%;
     margin: 0 auto;
     margin-top: 2px;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
     border: 2px solid black;
     border-radius: 1px;
     background-color: gray;
     padding: 10px;
     min-height:60px;
     overflow: hidden;
+}
+
+.showGame{
+  width: 80%;
+  margin-top: 10px;
 }
 
 .account{
@@ -192,4 +198,14 @@ width: 300px;
 
 .game:last-child {
     margin-bottom:10px;
+}
+
+.game:nth-child(odd){
+  float:left;
+  margin-left: 5px;
+}
+
+.game:nth-child(even){
+  float:right;
+  margin-right: 5px;
 }

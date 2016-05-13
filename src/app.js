@@ -40,7 +40,8 @@ var app = express();
 app.use('/assets', express.static(path.resolve(__dirname+'/../client/')));
 app.use(compression());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
+  limit: '10mb'
 }));
 app.use(session({
   key: "sessionid",

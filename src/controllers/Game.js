@@ -64,11 +64,51 @@ var makeGame = function(req, res) {
 };
 
 var showGame = function (req, res) {
-  Game.GameModel.findByName(req.params.name, function (err, docs) {
+  console.log(req.params.name);
+
+  Game.GameModel.findByName(decodeURI(req.params.name), function (err, docs) {
     if (err){
       console.log(err);
     }
-    res.render('game', {game:docs, csrfToken: req.csrfToken()});
+    console.log(docs);
+
+    var game = docs[0];
+    if (game.cardType == "string"){
+      res.render('game_draw', {game:docs, csrfToken: req.csrfToken()});
+    }else if (game.cardType == "img"){
+      res.render('game_type', {game:docs, csrfToken: req.csrfToken()});
+    }
+  });
+};
+
+var addCard = function(req, res) {
+  Game.GameModel.getByName(decodeURI(req.params.name), function(err,docs) {
+    if (err) {
+      console.log(err);
+    }
+    
+
+    var game = docs[0];
+
+    game.cardType = req.body.cardType;
+    
+
+    game.cards.push(req.body.newCard);
+
+    game.users.push([req.session.account._id, req.session.account.username]);
+
+    game.currentIteration++;
+
+    game.save(function(err) {
+      if (err)
+        console.log('error')
+      else
+        console.log('success')
+    });
+
+    
+    res.json({redirect: '/main'});
+
   });
 };
 
@@ -85,4 +125,5 @@ module.exports.mainPage = mainPage;
 module.exports.makePage = makePage;
 module.exports.make = makeGame;
 module.exports.showGame = showGame;
+module.exports.addCard = addCard;
 module.exports.delete = deleteGame;

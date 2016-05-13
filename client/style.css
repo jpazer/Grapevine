@@ -81,7 +81,7 @@ nav {
     font-size: 1.2em;
     background-color: gray;
     border-radius: 1px;
-    color: black;
+    color: white;
     text-decoration: none;
     padding: 5px;
     margin-left: auto;
@@ -182,7 +182,7 @@ nav {
 }
 
 #gameForm input{
-width: 300px;
+  width: 300px;
 }
 
 .game:hover {
@@ -208,4 +208,11 @@ width: 300px;
 .game:nth-child(even){
   float:right;
   margin-right: 5px;
+}
+
+canvas{
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }

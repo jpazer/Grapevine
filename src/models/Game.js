@@ -20,7 +20,7 @@ var GameSchema = new mongoose.Schema({
     type:String,
   },
 
-  cards: [mongoose.Schema.Types.Mixed],
+  cards: [String],
 
   currentIteration: {
     type: Number,
@@ -35,7 +35,7 @@ var GameSchema = new mongoose.Schema({
     trim: true
   },
 
-  users: [mongoose.Schema.ObjectId],
+  users: [mongoose.Schema.Types.Mixed],
 
   owner: {
     type: mongoose.Schema.ObjectId,
@@ -85,6 +85,13 @@ GameSchema.statics.findByName = function (name, callback) {
     name: name
   };
   return GameModel.find(search).select().exec(callback);
+};
+
+GameSchema.statics.getByName = function (name, callback) {
+  var search = {
+    name: name
+  };
+  return GameModel.find(search).exec(callback);
 };
 
 GameSchema.statics.returnAll = function (callback) {

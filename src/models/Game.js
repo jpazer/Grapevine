@@ -27,6 +27,11 @@ var GameSchema = new mongoose.Schema({
     default: 0
   },
 
+  iterationsLeft: {
+    type: Number,
+    required:true
+  },
+
   maxIterations: {
     type: Number,
     required: true,
@@ -51,6 +56,11 @@ var GameSchema = new mongoose.Schema({
   createdData: {
     type: Date,
     default: Date.now
+  },
+
+  lastUpdated: {
+    type: Date,
+    default: Date.now
   }
 });
 
@@ -67,6 +77,7 @@ GameSchema.methods.toAPI = function () {
 };
 
 GameSchema.statics.findByOwner = function (ownerId, callback) {
+  //returns all of the models whose owner has this ownerId
   var search = {
     owner: mongoose.Types.ObjectId(ownerId)
   };
@@ -74,6 +85,7 @@ GameSchema.statics.findByOwner = function (ownerId, callback) {
 };
 
 GameSchema.statics.deleteByName = function (name, callback) {
+  //deletes the game with this name
   var search = {
     name: name
   };
@@ -81,23 +93,30 @@ GameSchema.statics.deleteByName = function (name, callback) {
 };
 
 GameSchema.statics.findByName = function (name, callback) {
+  //returns the game with this name
   var search = {
     name: name
   };
   return GameModel.find(search).select().exec(callback);
 };
 
-GameSchema.statics.getByName = function (name, callback) {
+GameSchema.statics.findByParticipatingUser = function (id, callback) {
+  //returns games that this id has participated in
   var search = {
-    name: name
+    users: id
   };
-  return GameModel.find(search).exec(callback);
+  return GameModel.find(search).select().exec(callback);
 };
 
-GameSchema.statics.returnAll = function (callback) {
-  var search = {};
+GameSchema.statics.returnAvailable = function (id, callback) {
+  //returns all games that's owner isn't this id, this id hasn't participated in, and have not yet finished
+  var search = {
+    owner: {$ne: id},
+    users: {$ne: id},
+    iterationsLeft: {$ne: 0}
+  };
   return GameModel.find(search).select().exec(callback);
-}
+};
 
 GameModel = mongoose.model("Game", GameSchema);
 

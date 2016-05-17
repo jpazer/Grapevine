@@ -7,20 +7,20 @@ block body
     .navlink
       a(href="/logout") Log out
     .navlink
-      a(href="/account") Account
+      a(href="/account") My Games
     .navlink
       a(href="/main") Home
       
   
   
-  section#games
+  section.games
     p.error Error Here
     if !game || game.length == 0
-      div.game
-        h3.emptyGame No Game exists
+      h3.instruct No Games yet
     else
       each val in game
         div.showGame
+          p.gameCard Draw this:
           p.gameCard #{val.cards[val.currentIteration]}
           canvas#canvas(height='500', width='500') Please use an HTML 5 browser
           button(class="formSubmit", id="addCardSubmitImg", name="#{val.name}", value="#{csrfToken}") Submit
@@ -29,4 +29,4 @@ block body
   
 block scripts
   script(src="/assets/make.js")
-  script(src="/assets/canvas_logic_draw.js")
+  script(src="/assets/canvas_logic.js")

@@ -3,19 +3,23 @@ var models = require('../models');
 var Account = models.Account;
 
 var loginPage = function (req, res) {
+  //render the login page
   res.render('login', {csrfToken: req.csrfToken()});
 };
 
 var signupPage = function (req, res) {
+  //render the signup page
   res.render('signup', {csrfToken: req.csrfToken()});
 };
 
 var logout = function (req, res) {
+  //log out of this account and redirect to root/login page
   req.session.destroy();
   res.redirect('/');
 };
 
 var login = function (req, res) {
+  //login error checking and logic, redirects to the main page
   if (!req.body.username || !req.body.pass) {
       return res.status(400).json({error: "All fields required!"});
   }
@@ -30,11 +34,10 @@ var login = function (req, res) {
   });
 };
 
-var viewAccount = function (req, res) {
-    res.render('account', {account: req.session.account, csrfToken: req.csrfToken()});
-};
+
 
 var signup = function (req, res) {
+  //signup error checking and logic, redirects to main page
   if (!req.body.username || !req.body.pass || !req.body.pass2) {
     return res.status(400).json({error: "All fields required!"});
   }
@@ -70,4 +73,3 @@ module.exports.login = login;
 module.exports.logout = logout;
 module.exports.signupPage = signupPage;
 module.exports.signup = signup;
-module.exports.viewAccount = viewAccount;

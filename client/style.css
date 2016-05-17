@@ -1,8 +1,10 @@
 html, body {
     height: 100%;
     width: 100%;
+    min-width: 780px;
     margin: 0;
     padding: 0;
+
     overflow-x: hidden;
 }
 
@@ -40,7 +42,7 @@ nav {
   padding:5px;
   margin-left: auto;
   margin-right: auto;
-  width: 200px;
+  width: 500px;
 }
 
 #title{
@@ -65,7 +67,7 @@ nav {
     background-color: darkgray;
 }
 
-#newGameButton {
+#button {
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -132,14 +134,16 @@ nav {
     box-shadow: 0px 0px 1px 1px darkgray;
 }
 
-#games {
+.games {
     width: 80%;
     min-width: 400px;
     border: 2px solid black;
     border-radius: 4px;
     margin: 0 auto;
-    margin-top: 100px;
-
+    margin-top: 10px;
+}
+.games:first-child(){
+  margin-top: 100px;
 }
 
 .game, .account, .showGame{
@@ -192,27 +196,48 @@ nav {
     background-color: darkgray;
 }
 
-.game:first-child {
+.game:first-child(){
     margin-top: 10px;
 }
 
-.game:last-child {
+.game:last-child() {
     margin-bottom:10px;
 }
 
-.game:nth-child(odd){
+.game:nth-child(even):not(:last-child){
   float:left;
   margin-left: 5px;
 }
 
-.game:nth-child(even){
+.game:nth-child(odd){
   float:right;
   margin-right: 5px;
 }
 
-canvas{
+canvas, .showGame img{
   width: 500px;
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+#newCard{
+line-height: 20px;
+width: 500px;
+padding: 3px;
+margin-top: 10px;
+margin-bottom: 5px;
+margin-left: auto;
+margin-right: auto;
+display: block;
+}
+
+.showGame .gameCard{
+  font-size: 20px;
+  width:500px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
 }

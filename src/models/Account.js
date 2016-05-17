@@ -41,6 +41,7 @@ AccountSchema.methods.toAPI = function() {
 };
 
 AccountSchema.methods.validatePassword = function(password, callback) {
+    //checks if this password is useable
 	var pass = this.password;
 
 	crypto.pbkdf2(password, this.salt, iterations, keyLength, function(err, hash) {
@@ -52,7 +53,7 @@ AccountSchema.methods.validatePassword = function(password, callback) {
 };
 
 AccountSchema.statics.findByUsername = function(name, callback) {
-
+    //returns an account by username
     var search = {
         username: name
     };
@@ -61,6 +62,7 @@ AccountSchema.statics.findByUsername = function(name, callback) {
 };
 
 AccountSchema.statics.generateHash = function(password, callback) {
+    //returns the hash of a password
 	var salt = crypto.randomBytes(saltLength);
 
 	crypto.pbkdf2(password, salt, iterations, keyLength, function(err, hash){
@@ -69,13 +71,12 @@ AccountSchema.statics.generateHash = function(password, callback) {
 };
 
 AccountSchema.statics.authenticate = function(username, password, callback) {
+    //authenticates a users username and password to log them into their account
 	return AccountModel.findByUsername(username, function(err, doc) {
 
-		if(err)
-		{
+		if(err){
 			return callback(err);
 		}
-
         if(!doc) {
             return callback();
         }
@@ -84,10 +85,8 @@ AccountSchema.statics.authenticate = function(username, password, callback) {
             if(result === true) {
                 return callback(null, doc);
             }
-
             return callback();
         });
-
 	});
 };
 

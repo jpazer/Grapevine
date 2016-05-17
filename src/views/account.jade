@@ -7,16 +7,55 @@ block body
     .navlink
       a(href="/logout") Log out
     .navlink
-      a(href="/account") Account
+      a(href="/account") My Games
     .navlink
       a(href="/main") Home
       
   p.error Error Here
+
+  p.instruct Click on a Game to Open
   
   div.account
     p.accountName Name: #{account.username}
     p.accountID ID #: #{account._id}
+
+
+
+  section.games
+    a#button(href="/make" class="formSubmit") Make a new game
+  section.games
+    h3.instruct My Games:
+    if !myGames || myGames.length == 0
+        p.instruct No Games created yet
+    else
+      each val in myGames
+        div.game(name="#{val.name}", csrf="#{csrfToken}")
+          p.gameName Name: #{val.name}
+          if val.iterationsLeft == 0
+            h1 Available to View
+          else
+            p.gameCurItr Iterations Left: #{val.iterationsLeft}
+          p.gameCard Card: #{val.cardType}
           
+          button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
+    div(style="clear:both; margin-bottom:10px;")
+
+  section.games
+    h3.instruct Games I've contributed to:
+    if !participatedGames || participatedGames.length == 0
+        p.instruct No Games contributed to
+    else
+      each val in participatedGames
+        div.game(name="#{val.name}", csrf="#{csrfToken}")
+          p.gameName Name: #{val.name}
+          if val.iterationsLeft == 0
+            h1 Available to View
+          else
+            p.gameCurItr Iterations Left: #{val.iterationsLeft}
+          p.gameOwner Owner: #{val.ownerUsername}
+          p.gameCard Card: #{val.cardsType}
+    div(style="clear:both; margin-bottom:10px;")
+
 block scripts
   script(src="/assets/make.js")
       

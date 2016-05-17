@@ -25,7 +25,7 @@ $(document).ready(function() {
         });
     }
 
-    $("#signupSubmit").on("click", function(e) {
+    $("#signupSubmit").on("click", function(e) {//submit signup form information with error checking
         e.preventDefault();
         if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
             handleError("All fields are required");
@@ -39,7 +39,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $("#loginSubmit").on("click", function(e) {
+    $("#loginSubmit").on("click", function(e) { //submit login form information with error checking
         e.preventDefault();
         if($("#user").val() == '' || $("#pass").val() == '') {
             handleError("Username or password is empty");

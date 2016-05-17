@@ -15,17 +15,12 @@ block body
   
   section.games
     p.error Error Here
-    if !game || game.length == 0
-      h3.instruct No Games yet
-    else
-      each val in game
-        div.showGame
-          img(src='#{val.cards[val.currentIteration]}', alt='Current game card image')
-          input#newCard(type='text', name='newCard', placeholder='Describe the above picture...')
-          button(class="formSubmit", id="addCardSubmitText", name="#{val.name}", value="#{csrfToken}") Submit
+    
+    h3.instruct #{error}
+    
+            
         
     a(href="/main", class="formSubmit") Return
   
 block scripts
   script(src="/assets/make.js")
-

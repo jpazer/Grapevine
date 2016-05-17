@@ -20,11 +20,16 @@ block body
     else
       each val in game
         div.showGame
-          img(src='#{val.cards[val.currentIteration]}', alt='Current game card image')
-          input#newCard(type='text', name='newCard', placeholder='Describe the above picture...')
-          button(class="formSubmit", id="addCardSubmitText", name="#{val.name}", value="#{csrfToken}") Submit
+          each card, i in val.cards
+            hr
+            if i%2 == 0
+              p.gameCard #{card}
+            else
+              img(src='#{card}', alt='Current game card image')
+
+            
         
-    a(href="/main", class="formSubmit") Return
+    a(href="/account", class="formSubmit") Return
   
 block scripts
   script(src="/assets/make.js")

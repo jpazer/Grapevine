@@ -28,7 +28,7 @@ $(document).ready(function() {
         });
     }
 
-    $("#makeGameSubmit").on("click", function(e) {
+    $("#makeGameSubmit").on("click", function(e) {//submit the form to create a new game
         e.preventDefault();
         if($("#gameName").val() == '' || $("#gameMaxItr").val() == '' || $("#gameStartWords").val() == '') {
             handleError("All fields are required");
@@ -38,7 +38,7 @@ $(document).ready(function() {
         return false;
     });
 
-    $("#addCardSubmitText").on("click", function(e) {
+    $("#addCardSubmitText").on("click", function(e) {//submit a sentence to a game
         e.preventDefault();
         if($("#newCard").val() == '') {
             handleError("You must describe the picture");
@@ -48,23 +48,26 @@ $(document).ready(function() {
         return false;
     });
 
-    $("#addCardSubmitImg").on("click", function(e) {
+    $("#addCardSubmitImg").on("click", function(e) {//submit a drawing card to a game
         e.preventDefault();
       
-        var newCard = document.querySelector("#canvas").toDataURL("image/png");
+        var newCard = document.querySelector("#canvas").toDataURL("image/png");//get the data from canvas in png(string)
 
         sendAjax("/addcard/"+encodeURI($(this).attr('name')), {'newCard': newCard, 'cardType':"img", '_csrf': $(this).val()});
         return false;
     });
 
-    $(".deleteButton").on("click", function (e) {
+    $(".deleteButton").on("click", function (e) {//delete the game
       e.preventDefault();
+      e.stopPropagation();
       sendAjax("/delete", {'name': $(this).attr('name'), '_csrf': $(this).val()});
+      return false;
     });
 
-    $(".game").on("click", function (e) {
+    $(".game").on("click", function (e) {//redirect to show game
       e.preventDefault();
       window.location = "/game/"+encodeURI($(this).attr('name'));
+      return false;
     });
 });
 

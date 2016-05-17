@@ -7,29 +7,29 @@ block body
     .navlink
       a(href="/logout") Log out
     .navlink
-      a(href="/account") Account
+      a(href="/account") My Games
     .navlink
       a(href="/main") Home
           
   
-
+  
   p.instruct Click on a Game to Open
-  section#games
-    p.error Error Here
-    a#newGameButton(href="/make" class="formSubmit") Make a new game
+  p.error Error Here
+  section.games
+    h1.instruct Available Games:
     if !games || games.length == 0
-      div.game
-        h3.emptyGame No Games yet
+        h3.instruct No games available to contribute to right now.
+        a#button(href="/account" class="formSubmit") Go to My Games
+        p.instruct or
+        a#button(href="/make" class="formSubmit") Make a new game
     else
       each val in games
         div.game(name="#{val.name}", csrf="#{csrfToken}")
           p.gameName Name: #{val.name}
-          p.gameCurItr Current Iteration: #{val.currentIteration}
-          p.gameMaxItr Maximum Iterations: #{val.maxIterations}
+          p Iterations Left: #{val.iterationsLeft}
           p.gameOwner Owner: #{val.ownerUsername}
-          p.gameCard Card: #{val.cards[val.currentIteration]}
+          p.gameCard Card: #{val.cardType}
           
-          button(class="deleteButton", name="#{val.name}", value="#{csrfToken}") Delete
     div(style="clear:both; margin-bottom:10px;")
 block scripts
   script(src="/assets/make.js")

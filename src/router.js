@@ -1,7 +1,19 @@
+/*router.js
+ *
+ *author: jasmine pazer
+ *description: handles routing various ajax requests and page requests 
+ *             to the appropriate pages and with appropriate requirements
+ *
+ *reqires: middleware/index.js
+ *         controllers/Account.js
+ *         controllers/Game.js
+ */
+
 var controllers = require('./controllers');
 var mid = require('./middleware');
 
-var router = function (app) { //routes urls to various functions
+//routes urls to various functions
+var router = function (app) { 
   app.get("/login", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
   app.post("/login", mid.requiresSecure, mid.requiresLogout, controllers.Account.login);
   app.get("/signup", mid.requiresSecure, mid.requiresLogout, controllers.Account.signupPage);

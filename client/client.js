@@ -1,3 +1,9 @@
+/*client.js
+ *
+ *author: jasmine pazer
+ *description: handles sending ajax requests for login and sign up
+ */
+
 "use strict";
 
 $(document).ready(function() {
@@ -24,8 +30,10 @@ $(document).ready(function() {
             }
         });
     }
-
-    $("#signupSubmit").on("click", function(e) {//submit signup form information with error checking
+    
+    //send a request to make a new account
+    //submit signup form information with error checking
+    $("#signupSubmit").on("click", function(e) {
         e.preventDefault();
         if($("#user").val() == '' || $("#pass").val() == '' || $("#pass2").val() == '') {
             handleError("All fields are required");
@@ -38,8 +46,10 @@ $(document).ready(function() {
         sendAjax($("#signupForm").attr("action"), $("#signupForm").serialize());
         return false;
     });
-
-    $("#loginSubmit").on("click", function(e) { //submit login form information with error checking
+    
+    //send a request to login with existing account
+    //submit login form information with error checking
+    $("#loginSubmit").on("click", function(e) { 
         e.preventDefault();
         if($("#user").val() == '' || $("#pass").val() == '') {
             handleError("Username or password is empty");

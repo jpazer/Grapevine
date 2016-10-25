@@ -1,3 +1,9 @@
+/*Game.js
+ *
+ *author: jasmine pazer
+ *description: game schema and model with search functions
+ */
+
 var mongoose = require('mongoose');
 var _ = require('underscore');
 
@@ -76,40 +82,41 @@ GameSchema.methods.toAPI = function () {
   };
 };
 
+//returns all of the models whose owner has this ownerId
 GameSchema.statics.findByOwner = function (ownerId, callback) {
-  //returns all of the models whose owner has this ownerId
   var search = {
     owner: mongoose.Types.ObjectId(ownerId)
   };
   return GameModel.find(search).select().exec(callback);
 };
 
-GameSchema.statics.deleteByName = function (name, callback) {
-  //deletes the game with this name
-  var search = {
-    name: name
-  };
-   GameModel.find(search).remove().exec(callback);
-};
-
-GameSchema.statics.findByName = function (name, callback) {
-  //returns the game with this name
-  var search = {
-    name: name
-  };
-  return GameModel.find(search).select().exec(callback);
-};
-
+//returns games that this id has participated in
 GameSchema.statics.findByParticipatingUser = function (id, callback) {
-  //returns games that this id has participated in
   var search = {
     users: id
   };
   return GameModel.find(search).select().exec(callback);
 };
 
+//returns the game with this name
+GameSchema.statics.findByName = function (name, callback) {
+  var search = {
+    name: name
+  };
+  return GameModel.find(search).select().exec(callback);
+};
+
+//deletes the game with this name
+GameSchema.statics.deleteByName = function (name, callback) {  
+  var search = {
+    name: name
+  };
+   GameModel.find(search).remove().exec(callback);
+};
+
+//returns all games that's owner isn't this id, 
+//this id hasn't participated in, and have not yet finished
 GameSchema.statics.returnAvailable = function (id, callback) {
-  //returns all games that's owner isn't this id, this id hasn't participated in, and have not yet finished
   var search = {
     owner: {$ne: id},
     users: {$ne: id},

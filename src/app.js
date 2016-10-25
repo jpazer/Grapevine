@@ -1,3 +1,9 @@
+/*app.js
+ *
+ *author: jasmine pazer
+ *description: handles initilizing external libraries
+ */
+
 var path = require('path');
 var express = require('express');
 var compression = require('compression');

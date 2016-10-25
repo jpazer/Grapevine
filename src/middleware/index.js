@@ -1,3 +1,9 @@
+/*index.js
+ *
+ *author: jasmine pazer
+ *description: error checking requirements
+ */
+
 var requiresLogin = function (req, res, next) {
   //redirects if no one is logged in
   if (!req.session.account) {

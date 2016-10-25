@@ -1,3 +1,9 @@
+/*Account.js
+ *
+ *author: jasmine pazer
+ *description: account schema and model with authentication and search functions
+ */
+
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
@@ -32,16 +38,16 @@ var AccountSchema = new mongoose.Schema({
 
 });
 
+//_id is built into your mongo document and is guaranteed to be unique
 AccountSchema.methods.toAPI = function() {
-    //_id is built into your mongo document and is guaranteed to be unique
     return {
         username: this.username,
         _id: this._id
     };
 };
 
+//checks if this password is useable
 AccountSchema.methods.validatePassword = function(password, callback) {
-    //checks if this password is useable
 	var pass = this.password;
 
 	crypto.pbkdf2(password, this.salt, iterations, keyLength, function(err, hash) {
@@ -52,17 +58,16 @@ AccountSchema.methods.validatePassword = function(password, callback) {
 	});
 };
 
+//returns an account by username
 AccountSchema.statics.findByUsername = function(name, callback) {
-    //returns an account by username
     var search = {
         username: name
     };
-
     return AccountModel.findOne(search, callback);
 };
 
+//returns the hash of a password
 AccountSchema.statics.generateHash = function(password, callback) {
-    //returns the hash of a password
 	var salt = crypto.randomBytes(saltLength);
 
 	crypto.pbkdf2(password, salt, iterations, keyLength, function(err, hash){
@@ -70,10 +75,9 @@ AccountSchema.statics.generateHash = function(password, callback) {
 	});
 };
 
+//authenticates a users username and password to log them into their account
 AccountSchema.statics.authenticate = function(username, password, callback) {
-    //authenticates a users username and password to log them into their account
 	return AccountModel.findByUsername(username, function(err, doc) {
-
 		if(err){
 			return callback(err);
 		}
@@ -91,7 +95,6 @@ AccountSchema.statics.authenticate = function(username, password, callback) {
 };
 
 AccountModel = mongoose.model('Account', AccountSchema);
-
 
 module.exports.AccountModel = AccountModel;
 module.exports.AccountSchema = AccountSchema;

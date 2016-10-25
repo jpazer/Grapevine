@@ -1,3 +1,12 @@
+/*Account.js
+ *
+ *author: jasmine pazer
+ *description: handles rendering the right pages for login and signup, 
+ *             and account creation and authentication
+ *
+ *reqires: models/Account.js
+ */
+
 var models = require('../models');
 
 var Account = models.Account;
@@ -33,8 +42,6 @@ var login = function (req, res) {
     res.json({redirect: '/main'});
   });
 };
-
-
 
 var signup = function (req, res) {
   //signup error checking and logic, redirects to main page

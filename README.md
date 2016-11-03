@@ -8,6 +8,7 @@ Try it here: https://the-grapevine.herokuapp.com/
 Documentation: https://people.rit.edu/jgp5980/430/
 
 Starting with a sentence, users alternate between drawing pictures and writing sentences to describe what the user before them wrote or drew. Like rumors through the grapevine the message gets twisted and it's usually hilarious.
+
 High Level Concept
 
 This is an online multi-user version of the pictionary/telephone mashup game.

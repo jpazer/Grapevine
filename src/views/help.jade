@@ -1,0 +1,23 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    label#title GrapeVine
+    .navlink
+      a(href="/logout") Log out
+    .navlink
+      a(href="/account") My Games
+    .navlink
+      a(href="/main") Home
+    .navlink
+      a(href="/help") Help
+          
+  
+    p.instruct This is an online multi-user version of the pictionary/telephone mashup game.
+
+    p.instruct Users can start by joining an existing game or creating their own. Each game created has a starting sentence from the creator, and a maximum number of iterations. When the game reaches the maximum the entire evolution of that game can be viewed. That means users can see what the original sentence was and all of the pictures and sentences that came after that. If a user joins an existing game, they will either draw or write a sentence depending on what the user before them did. Users can only contribute to each game once, and can not contribute games they created.
+
+    p.instruct This is a muti-user system because every game will be participated in by as many users as there are maximum iterations. Each user will have their own account, and will interact with what the other users have done to progress games. The client platform will be web pages. The server stores all of the games and user information. Users send data to the server when they add iterations to games or when they create a new game. All of the games are synced between users.
+
+

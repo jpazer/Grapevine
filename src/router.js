@@ -27,6 +27,7 @@ var router = function (app) {
   app.post("/addcard/:name", mid.requiresLogin, controllers.Game.addCard);
   app.post("/delete", mid.requiresLogin, controllers.Game.delete);
   app.get("/", mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);
+  app.get("/help", controllers.Account.helpPage);
 };
 
 module.exports = router;

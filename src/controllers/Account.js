@@ -11,6 +11,11 @@ var models = require('../models');
 
 var Account = models.Account;
 
+var helpPage = function (req, res) {
+  //render the help page
+  res.render('help', {csrfToken: req.csrfToken()});
+};
+
 var loginPage = function (req, res) {
   //render the login page
   res.render('login', {csrfToken: req.csrfToken()});

@@ -80,6 +80,7 @@ var signup = function (req, res) {
   });
 };
 
+module.exports.helpPage = helpPage;
 module.exports.loginPage = loginPage;
 module.exports.login = login;
 module.exports.logout = logout;
